@@ -1,0 +1,31 @@
+<!--
+ - Created by Guilherme Assis on 1/24/2020.
+ -->
+
+<aura:component description="accDisplay"
+                implements="force:hasRecordId,force:appHostable,flexipage:availableForRecordHome">
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="accountRecord" type="Object"/>
+    <aura:attribute name="recordDataError" type="Object" description="Error in recordData"/>
+
+    <force:recordData aura:id="accRecord"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      targetError="{!v.recordDataError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.accountRecord}"
+                      mode="VIEW"/>
+
+    <lightning:card iconName="standard:account" title="{!v.accountRecord.Name}">
+        <p>
+            <lightning:formattedText title="Industry" value="{!v.accountRecord.Industry}"/>
+        </p>
+        <p>
+            <lightning:formattedText title="Description" value="{!v.accountRecord.Description}"/>
+        </p>
+        <p>
+            <lightning:formattedPhone title="Phone" value="{!v.accountRecord.Phone}"/>
+        </p>
+    </lightning:card>
+
+</aura:component>

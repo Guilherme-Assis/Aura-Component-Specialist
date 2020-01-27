@@ -1,0 +1,41 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="boat" type="Boat__c"/>
+    <aura:attribute name="id" type="Id"/>
+    
+    <aura:handler event="c:BoatSelected" action="{!c.onBoatSelected}"/>
+    <aura:handler name="boatReviewAdded" event="c:BoatReviewAdded" action="{!c.onBoatReviewAdded}"/>
+    
+    <force:recordData aura:id="service"
+                      recordId="{!v.id}"
+                      targetFields="{!v.boat}"
+                      fields="Id,
+                              Name,
+                              Description__c,
+                              Price__c,
+                              Length__c,
+                              Contact__r.Name,
+                              Contact__r.Email,
+                              Contact__r.HomePhone,
+                              BoatType__r.Name,
+                              Picture__c"
+                      recordUpdated="{!c.onRecordUpdated}"/>
+    
+    <aura:if isTrue="{! !empty(v.boat) }">
+        <lightning:tabset aura:id="tabSet" class="slds-card">
+            
+            <lightning:tab label="Details">
+                <c:BoatDetail boat="{!v.boat}" />
+            </lightning:tab>
+            
+            <lightning:tab id="boatreviewtab" label="Reviews">
+                <c:BoatReviews aura:id="boatReviewsCmp" boat="{!v.boat}"/>
+            </lightning:tab>
+            
+            <lightning:tab label="Add Review">
+                <c:AddBoatReview boat="{!v.boat}"/>
+            </lightning:tab>
+            
+        </lightning:tabset>
+    </aura:if>
+    
+</aura:component>

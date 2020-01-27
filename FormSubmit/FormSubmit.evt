@@ -1,0 +1,3 @@
+<aura:event type="Component" description="">
+    <aura:attribute name="formData" type="Object"/>
+</aura:event>

@@ -1,0 +1,54 @@
+<aura:component >
+    <aura:attribute name="boat" type="Boat__c"/>
+    <aura:attribute name="showDetailsButton" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <lightning:card iconName="utility:anchor">
+        
+        <aura:set attribute="title">
+            {!v.boat.Contact__r.Name}'s Boat
+        </aura:set>
+        
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.showDetailsButton}">
+                <lightning:button label="Full Details" onclick="{!c.onFullDetails}" />
+            </aura:if>
+        </aura:set>
+        
+        <lightning:layout>
+
+            <lightning:layoutItem size="12" mediumDeviceSize="6">
+                <div class="slds-p-horizontal--small">
+                    <div class="boatproperty">
+                        <span class="label">Boat Name:</span>
+                        <span>{! v.boat.Name }</span>
+                    </div>
+                    <div class="boatproperty">
+                        <span class="label">Type:</span>
+                        <span>{! v.boat.BoatType__r.Name }</span>
+                    </div>
+                    <div class="boatproperty">
+                        <span class="label">Length:</span>
+                        <span>{! v.boat.Length__c } ft</span>
+                    </div>
+                    <div class="boatproperty">
+                        <span class="label">Est. Price:</span>
+                        <lightning:formattedNumber value="{! v.boat.Price__c }" style="currency" currencyCode="USD" />
+                    </div>
+                    <div class="boatproperty">
+                        <span class="label">Description:</span>
+                        <lightning:formattedRichText value="{! v.boat.Description__c }" />
+                    </div>
+                </div>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="12" mediumDeviceSize="6">
+                <div class="imageview" style="{!'background-image: url(' + v.boat.Picture__c + ')'}" />
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+        
+    </lightning:card>
+    
+</aura:component>

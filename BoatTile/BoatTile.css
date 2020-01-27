@@ -1,0 +1,29 @@
+.THIS.tile {
+  position:relative;
+  display: inline-block;
+  width: 100%;
+  height: 220px;
+  padding: 1px !important;
+}
+
+.THIS.tile.selected {
+  border: 3px solid rgb(0, 112, 210);
+}
+
+.THIS.tile .innertile {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.THIS.tile .lower-third {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, .4);
+  padding: 6px 8px;
+}
